@@ -88,7 +88,6 @@ $(document).ready(function()
 		var idktg = $("#cmbKtgMnj").val();
 		var data = {'bln':arr[0],'thn':arr[1], 'ktg':idktg};
 		var dtSave = $('form').serialize()+'&'+$.param(data);
-		console.log(dtSave);
 
 		$.ajax(
 		{
