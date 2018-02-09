@@ -1,4 +1,5 @@
-<?php $no =1; if($checkVarNi->num_rows()>0): ?>
+<?php $no =1; ?>
+<?php if($checkVarNi->num_rows()>0): ?>
 	<?php foreach($getVarNi as $rowVal ): ?>
 		<tr>
 			<td><?= $no ++; ?></td>
@@ -8,8 +9,8 @@
 			<td><?= $rowVal->nilai_4 ?></td>
 			<td><?= $rowVal->nilai_7 ?></td>
 			<td><?= $rowVal->nilai_10 ?></td>
-			<td><input type="text" name="idnilai[]" id="idnilai" value="<?= $rowVal->idmanaj_penilaian ?>" ></td>
-			<td><input type="text" name="idvar[]" id="idvar" value="<?= $rowVal->id_manajvar ?>"></td>
+			<input type="hidden" name="idnilai[]" id="idnilai" value="<?= $rowVal->idmanaj_penilaian ?>" >
+			<input type="hidden" name="idvar[]" id="idvar" value="<?= $rowVal->id_manajvar ?>">
 			<td><input class="form-control text-center" type="text" id="nilai" name="nilai[]" value="<?= $rowVal->hasil ?>"></td>
 		</tr>
 	<?php endforeach ?>

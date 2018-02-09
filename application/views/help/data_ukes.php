@@ -50,7 +50,7 @@
           <td><?= $rowD->analisa ?></td>
           <td><?= $rowD->tindak_lanjut ?></td>
           <td colspan="2"></td>
-          <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ukesd<?= $rowD->idukes_d ?>">Input</button></td>
+          <!-- <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ukesd<?= $rowD->idukes_d ?>">Input</button></td> -->
 
         </tr>
       <?php endforeach ?>
@@ -63,6 +63,9 @@
             $sumUkesC += $rtUkesD;
             $rtUkesC = $sumUkesC / count($ukkc);
           ?>
+    <tr>
+      <td colspan="15"></td>
+    </tr>
     <?php endforeach ?>
     <tr>
       <td colspan="9"><strong>Nilai Rata-Rata <?= $rowB->ukes_b ?></strong></td>
@@ -73,6 +76,9 @@
       $sumUkesB += $rtUkesC;
       $rtUkesB = $sumUkesB / count($dtUkesA);
     ?>
+    <tr>
+      <td colspan="15"></td>
+    </tr>
   <?php endforeach ?>
     <tr>
       <td colspan="10"><strong>Nilai Rata-Rata <?= $rowA->ukes_a?></strong></td>

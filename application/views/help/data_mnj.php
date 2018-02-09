@@ -20,7 +20,7 @@
       <td class="text-center"><?= $rowVarNiEv->hasil ?></td>
       <td><?= $rowVarNiEv->coments?></td>
       <td><?= $rowVarNiEv->rev_date?></td>
-      <td><button id="btnnilai" class="btn btn-sm btn-primary">Update</button></td>
+      <!-- <td><button id="btnnilai" class="btn btn-sm btn-primary">Update</button></td> -->
     </tr>
     <?php $sumKtg += $rowVarNiEv->hasil ?>
   <?php endforeach ?>

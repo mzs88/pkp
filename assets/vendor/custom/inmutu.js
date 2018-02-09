@@ -1,5 +1,13 @@
 $(document).ready(function()
 {
+
+	$("#datetimepicker10").datetimepicker(
+  {
+    viewMode:'months',
+    format:'MMMM-YYYY',
+    locale:moment.locale('id')
+  });
+
 	$('button').hide();
 
 	function getNum(val)
@@ -11,16 +19,18 @@ $(document).ready(function()
      return val;
   }
 
-	$('#cmbKtg').on('change',function()
+	$('#cmbKtg').on('click',function()
 	{
 		waitingDialog.show();
 		var idKtg = $(this).val();
+		var tgl = $("#tgl").val();
+		var arr = tgl.split("-");
 
 		$.ajax(
 		{
 			type:'post',
-			data:{'idKtg':idKtg},
-			url:base_url+'mutu/page/loaddatamutu',
+			data:{'idKtg':idKtg,"bln":arr[0], "thn":arr[1]},
+			url:base_url+'help/data_mutu',
 			success:function(result)
 			{
 				$('#content').html(result);

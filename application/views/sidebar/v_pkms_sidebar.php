@@ -24,8 +24,8 @@
 			<li>
 				<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Penilaian Mutu<span class="fa arrow"></span></a>
 				<ul class="nav nav-second-level">
-					<li><a href="<?=base_url()?>mutu/page">Input</a></li>
-					<li><a href="<?=base_url()?>mutu/page/rekap">Data Penilaian Mutu</a></li>
+					<li><a href="<?=base_url()?>c_mutu">Input</a></li>
+					<li><a href="<?=base_url()?>c_mutu/viewdatamutu">Data Penilaian Mutu</a></li>
 				</ul>
 				<!-- /.nav-second-level -->
 			</li>

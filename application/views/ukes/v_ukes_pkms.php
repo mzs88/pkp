@@ -36,7 +36,6 @@
 		          <th rowspan="2" class="text-center">Analisa d</th>
 		          <th rowspan="2" class="text-center">Tindak lanjut</th>
 		          <th colspan="2" class="text-center">Revisi</th>
-		          <th rowspan="2" class="text-center">Opsi</th>
 		        </tr>
 		        <tr>
 		          <th>Tanggal</th>

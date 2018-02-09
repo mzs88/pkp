@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Admin</title>
+  <title>Puskesmas</title>
 
   <!-- Icon Header -->
   <link rel="icon" type="image/png" href="<?=base_url()?>assets/image/favicon/favicon.ico">

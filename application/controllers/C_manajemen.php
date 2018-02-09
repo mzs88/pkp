@@ -38,7 +38,7 @@ class C_manajemen extends CI_Controller {
 	{
 		$key = $this->input->post('id');
 		$pkms = $this->session->userdata('idpkms');
-		$bln = $this->input->post('bln');
+		$bln = monthToNumber($this->input->post('bln'));
 		$thn = $this->input->post('thn');
 
 		$data["checkVarNi"] = $this->m_data_mnj->checkVarNi($key, $pkms, $bln, $thn);

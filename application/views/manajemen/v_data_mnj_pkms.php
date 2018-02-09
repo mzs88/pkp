@@ -28,7 +28,6 @@
 		        <th colspan="4" class="text-center">Skala</th>
 		        <th rowspan="2" class="text-center" width="75">Nilai Hasil</th>
 		        <th colspan="2" class="text-center">Revisi</th>
-		        <th rowspan="2" class="text-center">Opsi</th>
 		      </tr>
 		      <tr>
 		        <th class="text-center">Nilai 0</th>
