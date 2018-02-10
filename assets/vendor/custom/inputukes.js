@@ -15,7 +15,7 @@ $(document).ready(function(){
      return val;
   }
 
-  $('#cmbUkesA').on('change',function(){
+  $('#cmbUkesA').on('click',function(){
     var date = $("#tgl").val();
     if(!date)
     {
@@ -96,7 +96,7 @@ $(document).ready(function(){
 
   });
 
-  $('#cmbUkesB').on('change', function()
+  $('#cmbUkesB').on('click', function()
   {
     waitingDialog.show();
     var id = $(this).val();
@@ -168,7 +168,7 @@ $(document).ready(function(){
 
   });
 
-  $('#cmbUkesC').on('change', function()
+  $('#cmbUkesC').on('click', function()
   {
 
     var id = $(this).val();

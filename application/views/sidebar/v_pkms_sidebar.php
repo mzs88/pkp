@@ -30,7 +30,7 @@
 				<!-- /.nav-second-level -->
 			</li>
 			<li>
-				<a href="<?=base_url()?>rekap/page"><i class="fa fa-dashboard fa-fw"></i> Rekap PKP</a>
+				<a href="<?=base_url()?>c_rekap"><i class="fa fa-dashboard fa-fw"></i> Rekap PKP</a>
 			</li>
 		</ul>
 	</div>

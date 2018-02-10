@@ -99,21 +99,22 @@
 		  		{
 		  			var content = $("#dataUkes");
 		  			content.html(data);
+		  			waitingDialog.hide();
 		  		}
 		  	});
 
-		  	$.ajax(
-		  	{
-		  		type:"post",
-		  		data:{"bln":arr[0], "thn":arr[1]},
-		  		url:base_url+"c_usaha_kesehatan/scrollviewukes",
-		  		success:function(data)
-		  		{
-		  			var content = $("#dataScroll");
-		  			content.html(data);
-		  			waitingDialog.hide();
-		  		}
-		  	})
+		  	// $.ajax(
+		  	// {
+		  	// 	type:"post",
+		  	// 	data:{"bln":arr[0], "thn":arr[1]},
+		  	// 	url:base_url+"c_usaha_kesehatan/scrollviewukes",
+		  	// 	success:function(data)
+		  	// 	{
+		  	// 		var content = $("#dataScroll");
+		  	// 		content.html(data);
+		  	// 		waitingDialog.hide();
+		  	// 	}
+		  	// })
 	  	}
 
 	  })

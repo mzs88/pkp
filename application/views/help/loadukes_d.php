@@ -36,3 +36,23 @@
     </tr>
   <?php endforeach ?>
 <?php endif ?>
+
+<script>
+  $(document).ready(function()
+  {
+    $("input[name='total[]'").on("click, focus",function()
+    {
+      $(this).select();
+    });
+
+    $("input[name='pncp[]'").on("click, focus",function()
+    {
+      $(this).select();
+    });
+
+    $("textarea").on("click, focus",function()
+    {
+      $(this).select();
+    });
+  })
+</script>
