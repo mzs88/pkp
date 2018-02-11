@@ -45,4 +45,5 @@
 	<tr>
 		<td colspan="13"></td>
 	</tr>
+	<?php $sumMutu = 0; ?>
 <?php endforeach ?>

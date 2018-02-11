@@ -3,7 +3,7 @@
 		<ul class="nav" id="side-menu">
 			</li>
 			<li>
-				<a href="<?=base_url()?>home"><i class="fa fa-dashboard fa-fw"></i> Dashbord</a>
+				<a href="<?=base_url()?>c_pkms_home"><i class="fa fa-dashboard fa-fw"></i> Dashbord</a>
 			</li>
 			<li>
 				<a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Penilaian Usaha Kesehatan<span class="fa arrow"></span></a>

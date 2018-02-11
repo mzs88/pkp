@@ -7,6 +7,7 @@ class C_pkms_home extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('m_check_login');
+		$this->load->model('m_chart_pkms');
 		$this->m_check_login->checkLoginSession();
 	}
 
@@ -36,6 +37,18 @@ class C_pkms_home extends CI_Controller {
 	{
 		$this->session->sess_destroy();
 		redirect('c_login','refresh');
+	}
+
+	public function getChart($value='')
+	{
+		$data["pkms"]     = $this->session->userdata('idpkms');
+		$data["bln"]      = date("m");
+		$data["thn"]      = date("Y");
+		// $data["puskes"]   = $this->m_chart_pkms->getBulan()->result();
+		$data["ukesChartA"] = $this->m_chart_pkms->ukesChartA()->result();
+		$data["ktgMutu"]  = $this->m_chart_pkms->getKtgMutuChart()->result();
+		$result           = $this->load->view('help/data_chart_pkms', $data, true);
+		echo $result;
 	}
 
 }

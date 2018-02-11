@@ -14,12 +14,11 @@ class C_rekap extends CI_Controller {
 
 	public function index()
 	{
-		$data["ukesRkpA"] = $this->m_data_rekap->ukesRkpA()->result();
-		//$data["ktgMnj"] = $this->m_data_rekap->loadKtgMnj()->result();
-		$comp['jdl']     = "Input Data Manajemen";
-		$comp["topnav"]  = $this->topnav();
-		$comp["sidebar"] = $this->sidebar();
-		$comp["content"] = $this->load->view('rekap/v_rekap_pkms', $data, true);
+		$data = array();
+		$comp['jdl']      = "Input Data Manajemen";
+		$comp["topnav"]   = $this->topnav();
+		$comp["sidebar"]  = $this->sidebar();
+		$comp["content"]  = $this->load->view('rekap/v_rekap_pkms', $data, true);
 		$this->load->view('home/v_pkms_home', $comp, FALSE);
 	}
 
@@ -34,6 +33,20 @@ class C_rekap extends CI_Controller {
 		$data = array();
 		return $this->load->view('sidebar/v_pkms_sidebar', $data, true);
 	}
+
+
+	public function getRekap()
+	{
+		$data["pkms"]     = $this->session->userdata('idpkms');
+		$data["bln"]      = monthToNumber($this->input->post('bln'));
+		$data["thn"]      = $this->input->post('thn');
+		$data["ukesRkpA"] = $this->m_data_rekap->ukesRkpA()->result();
+		$data["ktgMutu"]  = $this->m_data_rekap->getKtgMutu()->result();
+		$result           = $this->load->view('help/data_rekap_pkms', $data, true);
+		echo $result;
+	}
+
+
 
 }
 

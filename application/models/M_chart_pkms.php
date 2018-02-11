@@ -1,16 +1,24 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class M_data_rekap extends CI_Model {
+class M_chart_pkms extends CI_Model {
 
-	public function ukesRkpA(){
+	public function getBulan($thn)
+	{
+		$this->db->select('id_pkms, bln');
+		$this->db->from('mt_rekap');
+		$this->db->where('thn', $thn);
+	}
+
+
+	public function ukesChartA(){
     $this->db->select('ukes_a.idukes_a, ukes_a.ukes_a, bobot_a.bobot');
     $this->db->from('ukes_a');
     $this->db->join('bobot_a', 'bobot_a.idukes_a = ukes_a.idukes_a', 'left');
     return $this->db->get();
   }
 
-  public function ukesRkpB($key)
+  public function ukesChartB($key)
   {
   	$this->db->select('ukes_b.idukes_b, ukes_b.ukes_b, bobot_b.bobot');
   	$this->db->from('ukes_b');
@@ -19,7 +27,7 @@ class M_data_rekap extends CI_Model {
   	return $this->db->get();
   }
 
-  public function ukesRkpC($key)
+  public function ukesChartC($key)
   {
   	$this->db->select('idukes_c, ukes_c');
 		$this->db->from('ukes_c');
@@ -27,9 +35,9 @@ class M_data_rekap extends CI_Model {
 		return $this->db->get();
   }
 
-  public function ukesRkpD($key, $pkms, $bln, $thn)
+  public function ukesChartD($key, $pkms, $bln, $thn)
   {
-  	$this->db->select('ukes_d.idukes_d, ukes_d.ukes_d, sasaran.id_sasaran, sasaran.sasaran, target.id_target, target.op, target.nilai, target.sat,  nilai_pkp.total, nilai_pkp.target, nilai_pkp.pencapaian, nilai_pkp.analisa, nilai_pkp.tindak_lanjut');
+  	$this->db->select('ukes_d.idukes_d, ukes_d.ukes_d, sasaran.id_sasaran, sasaran.sasaran, target.id_target, target.op, target.nilai, target.sat,  nilai_pkp.total, nilai_pkp.target, nilai_pkp.pencapaian, nilai_pkp.analisa, nilai_pkp.tindak_lanjut, nilai_pkp.bln');
 		$this->db->from('ukes_d');
 		$this->db->join('nilai_pkp', 'nilai_pkp.idukes_d = ukes_d.idukes_d', 'left');
 		$this->db->join('target', 'target.idukes_d = ukes_d.idukes_d', 'left');
@@ -41,14 +49,13 @@ class M_data_rekap extends CI_Model {
 		return $this->db->get();
   }
 
-  // data rekap
-  public function loadKtgMnj()
+  public function loadKtgMnjChart()
 	{
 		$this->db->select('mnj_ktg.id_ktgmanaj, mnj_ktg.ktgmanaj, mj_bobot.bobot');
 		return $this->db->get('mnj_ktg');
 	}
 
-  public function loadDataManaj($pkms, $bln, $thn)
+	public function loadDataManajChart($pkms, $bln, $thn)
 	{
 		//$this->db->distinct();
 		$this->db->select('DISTINCT mnj_ktg.ktgmanaj, mnj_rekap.hasil, mj_bobot.bobot',false);
@@ -64,7 +71,7 @@ class M_data_rekap extends CI_Model {
 
 	//data mutu
 
-	public function getKtgMutu()
+	public function getKtgMutuChart()
 	{
 		$this->db->select('mt_ktg.idmt_ktg, mt_ktg.mtktg, mt_bobot.bobot');
 		$this->db->from('mt_ktg');
@@ -72,7 +79,7 @@ class M_data_rekap extends CI_Model {
 		return $this->db->get('');
 	}
 
-	public function loadRekapMutu($key, $pkms, $bln, $thn)
+	public function loadRekapMutuChart($key, $pkms, $bln, $thn)
 	{
 		$this->db->select('mt_rekap.idmt_rekap, mt_op_htng.idmt_op_htng, mt_op_htng.variable, mt_op_htng.operasional, mt_op_htng.penghitungan, mt_rekap.total, mt_rekap.capaian, mt_target.idmt_target, mt_target.op, mt_target.target, mt_rekap.analisa, mt_rekap.tndk_lnjt, eva_mt.comments, eva_mt.rev_date, mt_bobot.bobot');
 		$this->db->from('mt_ktg');
@@ -88,12 +95,8 @@ class M_data_rekap extends CI_Model {
 		return $this->db->get();
 	}
 
-	public function loadPkms()
-	{
-		return $this->db->get('puskesmas');
-	}
 
 }
 
-/* End of file M_data_rekap.php */
-/* Location: ./application/models/M_data_rekap.php */
+/* End of file M_data_chart.php */
+/* Location: ./application/models/M_data_chart.php */
