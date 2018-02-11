@@ -60,6 +60,8 @@ $(document).ready(function()
 		var dtAdd = {'bln':arr[0], 'thn':arr[1],'idktg':idktg}
 		var data  = form.serialize()+'&'+$.param(dtAdd);
 
+		// alert(idktg);
+
 		$.ajax(
 		{
 			type:'post',

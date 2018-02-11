@@ -41,6 +41,27 @@ class M_data_rekap extends CI_Model {
 		return $this->db->get();
   }
 
+  // data rekap
+  public function loadKtgMnj()
+	{
+		$this->db->select('mnj_ktg.id_ktgmanaj, mnj_ktg.ktgmanaj, mj_bobot.bobot');
+		return $this->db->get('mnj_ktg');
+	}
+
+  public function loadDataManaj($pkms, $bln, $thn)
+	{
+		//$this->db->distinct();
+		$this->db->select('DISTINCT mnj_ktg.ktgmanaj, mnj_rekap.hasil, mj_bobot.bobot',false);
+		$this->db->from('mnj_ktg');
+		$this->db->join('mnj_rekap', 'mnj_rekap.id_ktgmanaj = mnj_ktg.id_ktgmanaj', 'left');
+		$this->db->join('mj_bobot', 'mj_bobot.id_ktgmanaj = mnj_rekap.id_ktgmanaj', 'left');
+		// $this->db->where('mnj_rekap.id_ktgmanaj', $key);
+		$this->db->where('mnj_rekap.id_pkms', $pkms);
+		$this->db->where('mnj_rekap.bln', $bln);
+		$this->db->where('mnj_rekap.thn', $thn);
+		return $this->db->get();
+	}
+
 }
 
 /* End of file M_data_rekap.php */

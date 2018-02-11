@@ -11,7 +11,11 @@
   $rtlUkesA = 0;
   $rilUkesA = 0;
 
+  $totalUkes = 0;
+
   $noa=1;
+  $nomnj = 1;
+  $no = 4;
 
   $sumRkpA = 0;
   $rtRkpA = 0;
@@ -20,6 +24,10 @@
   $pkms = 1;
   $bln = 1;
   $thn = 2018;
+
+  $rilMnj = 0;
+  $sumMnj = 0;
+  $rtMnj = 0;
 ?>
 <script type="text/javascript">
 	waitingDialog.show();
@@ -81,6 +89,8 @@
 		        	$sumUkesB = 0;
 		        	$rtRkpA = $sumRkpA / count($b);
 				    }
+		        	$totalUkes += $rtRkpA;
+							// echo "<tr><td>".round($totalUkes)."</td></tr>";
 				  ?>
 					<!-- penghitung rata rata nilai rekap -->
 					<tr class="bg-success">
@@ -130,6 +140,53 @@
 					<?php endforeach ?>
 					<?php $sumRkpA = 0; ?>
 				<?php endforeach ?>
+
+				<!-- penilaian manajemen -->
+				<?php
+					$mnj = $this->m_data_rekap->loadDataManaj($pkms, $bln, $thn)->result();
+					foreach($mnj as $rwm)
+					{
+						$rilMnj = $rwm->hasil * $rwm->bobot;
+						$sumMnj += $rilMnj;
+						$rtMnj = $sumMnj / count($mnj);
+					}
+				?>
+				<tr class="bg-success">
+					<td>4</td>
+					<td colspan="2"><strong>MANAJEMEN PUSKESMAS</strong></td>
+					<td class="text-center">0</td>
+					<td></td>
+					<td class="text-center"><?= round($rtMnj) ?></td>
+				</tr>
+
+				<?php $mnj = $this->m_data_rekap->loadDataManaj($pkms, $bln, $thn)->result() ?>
+				<?php foreach($mnj as $rwm):?>
+					<tr>
+						<td><?= ($no).".".$nomnj++ ?></td>
+						<td><?= $rwm->ktgmanaj ?></td>
+						<td class="text-center"><?= $rwm->hasil ?></td>
+						<td class="text-center"><?= $rwm->bobot ?></td>
+						<?php
+							$rilMnj = $rwm->hasil * $rwm->bobot;
+						?>
+						<td class="text-center"><?= round($rilMnj,2) ?></td>
+					</tr>
+				<?php endforeach ?>
+				<!-- penilaian manajemen -->
+				<!-- penilaian mutu -->
+				<tr class="bg-success">
+					<td><strong>5</strong></td>
+					<td colspan="2">MUTU</td>
+					<td class="text-center">0</td>
+					<td></td>
+					<td class="text-center">0</td>
+				</tr>
+
+				<!-- penilaian mutu -->
+				<tr class="bg-danger">
+					<td colspan="5"><strong>Total</strong></td>
+					<td class="text-center"><?= round($totalUkes + $rtMnj,2) ?></td>
+				</tr>
 			</tbody>
 		</table>
 	</div>

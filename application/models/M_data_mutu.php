@@ -47,10 +47,11 @@ class M_data_mutu extends CI_Model {
 	public function loadDataMutu($key, $pkms, $bln, $thn)
 	{
 		$this->db->select('mt_rekap.idmt_rekap, mt_op_htng.idmt_op_htng, mt_op_htng.variable, mt_op_htng.operasional, mt_op_htng.penghitungan, mt_rekap.total, mt_rekap.capaian, mt_target.idmt_target, mt_target.op, mt_target.target, mt_rekap.analisa, mt_rekap.tndk_lnjt, eva_mt.comments, eva_mt.rev_date');
-		$this->db->from('mt_rekap');
-		$this->db->join('mt_op_htng', 'mt_op_htng.idmt_ktg = mt_rekap.idmt_ktg', 'left');
-		$this->db->join('mt_target', 'mt_target.idmt_op_htng = mt_op_htng.idmt_op_htng', 'left');
+		$this->db->from('mt_ktg');
+		$this->db->join('mt_op_htng', 'mt_op_htng.idmt_ktg = mt_ktg.idmt_ktg', 'left');
+		$this->db->join('mt_rekap', 'mt_rekap.idmt_op_htng = mt_op_htng.idmt_op_htng', 'left');
 		$this->db->join('eva_mt', 'eva_mt.idmt_rekap = mt_rekap.idmt_rekap', 'left');
+		$this->db->join('mt_target', 'mt_target.idmt_op_htng = mt_op_htng.idmt_op_htng', 'left');
 		$this->db->where('mt_rekap.idmt_ktg', $key);
 		$this->db->where('mt_rekap.id_pkms', $pkms);
 		$this->db->where('mt_rekap.bln', $bln);

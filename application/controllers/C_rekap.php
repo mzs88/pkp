@@ -15,7 +15,7 @@ class C_rekap extends CI_Controller {
 	public function index()
 	{
 		$data["ukesRkpA"] = $this->m_data_rekap->ukesRkpA()->result();
-
+		//$data["ktgMnj"] = $this->m_data_rekap->loadKtgMnj()->result();
 		$comp['jdl']     = "Input Data Manajemen";
 		$comp["topnav"]  = $this->topnav();
 		$comp["sidebar"] = $this->sidebar();
