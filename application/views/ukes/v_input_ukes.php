@@ -70,7 +70,10 @@
 				</div>
 			</form>
 			<div class="panel-footer">
-				<button id="btnSave" type="button" class="btn btn-success">button</button>
+				<button id="btnSave" type="button" class="btn btn-success pull-right"><i class="glyphicon glyphicon-floppy-save"></i> Simpan</button>
+				<div class="clearfix">
+
+				</div>
 			</div>
 		</div>
 	</div>

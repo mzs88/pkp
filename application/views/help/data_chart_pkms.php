@@ -48,24 +48,31 @@
           $d = $this->m_chart_pkms->ukesChartD($rcc->idukes_c, $pkms, $i, $thn)->result();
           foreach ($d as $rcd)
           {
-            $rilUkesC = $rcd->pencapaian / $rcd->total * 100;
-            // echo "<tr class='bg-warning'><td>".round($rilUkesC,2)."</td></tr>\n";
+            $rilUkesC = @($rcd->pencapaian / $rcd->total) * 100;
+            // echo "<div style='background-color:orange'>";
+            // echo "<hr><tr class='bg-warning'><td> rilUkesC : ".round(is_nan($rilUkesC) ? 0 : $rilUkesC,2)."</td></tr><br><hr>";
+            // echo "</div>";
             // echo monthToName($rcd->bln)."\n";
-            $sumUkesC += $rilUkesC;
+            $sumUkesC += is_nan($rilUkesC) ? 0 : $rilUkesC;
             $rtUkesC  = $sumUkesC / count($d); // Nilai rata rata ukes C
           }
 
+          // echo "<div style='background-color:blue'><hr><tr><td> rtUkesC : ".round($rtUkesC,2)."</td></tr><br><hr></div>";
+
           $sumUkesB += $rtUkesC;
           $sumUkesC = 0;
+          $rtUkesC = 0;
           $rtUkesB  = $sumUkesB / count($c); // Nilai rata rata ukes B
         }
+        // echo "<div style='background-color:#DAF7A6'><hr><tr><td> rtUkesB : ".round($rtUkesB,2)."</td></tr><br><hr></div>";
 
         $rilRkpA = $rtUkesB * $rcb->bobot;
-        // echo "<tr><td>".round($rilRkpA)."</td></tr>";
         $sumRkpA  += $rilRkpA;
         $sumUkesB = 0;
+        $rtUkesC = 0;
         $rtRkpA   = $sumRkpA / count($b);
       }
+        // echo "<div style='background-color:#FFC300'><hr><tr><td> rtRkpA : ".round($rtRkpA,2)."</td></tr><br><hr></div>";
       // echo $rca->ukes_a." : ".round($rtRkpA,2)."<br>";
         // echo "<hr>";
 
@@ -80,8 +87,8 @@
     $mnj = $this->m_chart_pkms->loadDataManajChart($pkms, $i, $thn)->result();
     foreach($mnj as $rwm)
     {
-      $rilMnj = $rwm->hasil * $rwm->bobot;
-      $sumMnj += $rilMnj;
+      $rilMnj = @($rwm->hasil * $rwm->bobot);
+      $sumMnj += is_nan($rilMnj) ? 0 : $rilMnj;
       $rtMnj  = $sumMnj / count($mnj);
     }
     // hitungan manajemen ===================================================
@@ -92,23 +99,24 @@
       $var = $this->m_chart_pkms->loadRekapMutuChart($rowDt->idmt_ktg, $pkms, $i, $thn)->result();
       foreach ($var as $rwv)
       {
-        $cpain   = $rwv->total / $rwv->capaian * 100;
-        $sumMutu += $cpain;
+        $cpain   = @($rwv->total / $rwv->capaian) * 100;
+        $sumMutu += is_nan($cpain) ? 0 : $cpain ;
         // echo "<tr><td>".$sumMutuA."</td></tr>";
       }
 
-      $rilMutu    = $sumMutu * $rowDt->bobot;
+      $rilMutu    = @($sumMutu * $rowDt->bobot);
       $sumMutu    = 0;
-      $sumRilMutu += $rilMutu;
+      $sumRilMutu += is_nan($rilMutu) ? 0 : $rilMutu;
       $rtMutu     = $sumRilMutu / count($ktgMutu);
 
     }
     // hitungan mutu ====================================================
     // echo "<tr><td>".$rtMutu."</td></tr>";
     $total = round($totalUkes + $rtMnj + $rtMutu,2);
-    // echo monthToName($i)." ; ".$total."<br>";
+    // echo "<div style='background-color:#FF5733'><hr><tr><td>".monthToName($i)." : ".$total."</td></tr><hr></div>";
     // echo "<hr>";
     $data[] = array('x'=> monthToName($i), 'y'=>$total);
+    // $data[] = array('x'=> $i, 'y'=>$total);
     $sumRilMutu = 0;
     $sumMutu    = 0;
     $total      = 0;

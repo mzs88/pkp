@@ -49,15 +49,17 @@
         $d = $this->m_data_rekap->ukesRkpD($rowC->idukes_c, $pkms, $bln, $thn)->result();
         foreach($d as $rowD)
         {
-          $rilUkesC = $rowD->pencapaian / $rowD->total * 100;
-          // echo "<tr class='bg-warning'><td>".$nd++."</td><td>".round($rilUkesC,2)."</td></tr>";
-          $sumUkesC += $rilUkesC;
+          $rilUkesC = @($rowD->pencapaian / $rowD->total) * 100;
+          // echo "<tr class='bg-warning'><td>".$no++."</td><td>".round(is_nan($rilUkesC) ? 0 : $rilUkesC,2)."</td></tr>";
+
+          $sumUkesC += is_nan($rilUkesC) ? 0 : $rilUkesC;
           $rtUkesC = $sumUkesC / count($d); // Nilai rata rata ukes C
         }
           $nd=1;
         // echo "<tr><td colspan='5'> Ukes C ".round($rtUkesC,2)."</td></tr>";
         $sumUkesB += $rtUkesC;
         $sumUkesC = 0;
+        $rtUkesC = 0;
         $rtUkesB = $sumUkesB / count($c); // Nilai rata rata ukes B
       }
       // echo "<tr class='bg-primary'><td colspan='5'> Ukes B ".round($rtUkesB,2)."</td></tr>";
@@ -66,8 +68,8 @@
       // $rtUkesB  = 0;
       // $rilUkesB = 0;
       // $rtlUkesA = $sumUkesA / count($b); // Nilai rata rata ukes A
-      $rilRkpA = $rtUkesB * $rowB->bobot;
-      // echo "<tr><td>".round($rilRkpA)."</td></tr>";
+      $rilRkpA = @($rtUkesB * $rowB->bobot);
+      // echo "<tr><td> ukes A : ".round($rilRkpA)."</td></tr>";
       $sumRkpA += $rilRkpA;
       $sumUkesB = 0;
       $rtRkpA = $sumRkpA / count($b);
@@ -95,9 +97,9 @@
         $d = $this->m_data_rekap->ukesRkpD($rowC->idukes_c, $pkms, $bln, $thn)->result();
         foreach($d as $rowD)
         {
-          $rilUkesC = $rowD->pencapaian / $rowD->total * 100;
+          $rilUkesC = @($rowD->pencapaian / $rowD->total) * 100;
           // echo "<tr class='bg-warning'><td>".$nd++."</td><td>".round($rilUkesC,2)."</td></tr>";
-          $sumUkesC += $rilUkesC;
+          $sumUkesC += is_nan($rilUkesC) ? 0 : $rilUkesC;
           $rtUkesC = $sumUkesC / count($d); // Nilai rata rata ukes C
         }
           $nd=1;
@@ -105,7 +107,10 @@
         $sumUkesB += $rtUkesC;
         $sumUkesC = 0;
         $rtUkesB = $sumUkesB / count($c); // Nilai rata rata ukes B
+        $rtUkesC = 0;
       }
+      $sumUkesB = 0;
+      // $rtUkesB = 0;
     ?>
     <!-- penghitungan nilai rekap -->
 
@@ -119,9 +124,15 @@
       <?php $sumRkpA += $rilRkpA ?>
       <td></td>
     </tr>
-    <?php $sumUkesB = 0; ?>
+    <?php
+      $rtUkesB = 0;
+      $sumUkesB = 0;
+    ?>
   <?php endforeach ?>
-  <?php $sumRkpA = 0; ?>
+  <?php
+    $sumRkpA = 0;
+    $rilRkpA = 0;
+  ?>
 <?php endforeach ?>
 
 <!-- penilaian manajemen -->

@@ -116,13 +116,14 @@
 						dtR = JSON.parse(dt);
 						// console.log(dtR);
 
-						Morris.Bar(
+						Morris.Line(
 						{
 							element:'chart-rekap',
 							data : dtR,
 							xkey:'x',
 							ykeys:['y','a'],
 							labels:['Nilai','Rata2'],
+		          parseTime:false,
 							hideover:'auto',
 							resize:true
 						});

@@ -26,10 +26,17 @@
         $d = $this->m_data_ukes->loadNilaiUkes($rowC->idukes_c, $pkms, $bln, $thn)->result();
         foreach($d as $rowD)
         {
-          $rilUkesC = $rowD->pencapaian / $rowD->total * 100;
-          // echo "<tr class='bg-warning'><td>".$nd++."</td><td>".round($rilUkesC,2)."</td></tr>";
-          $sumUkesC += $rilUkesC;
-          $rtUkesC = $sumUkesC / count($d); // Nilai rata rata ukes C
+          $rilUkesC = @($rowD->pencapaian / $rowD->total) * 100;
+          // echo "<tr class='bg-warning'><td>".$nd++."</td><td>".$rowD->pencapaian."-".$rowD->total."</td></tr>";
+          if(is_nan($rilUkesC))
+          {
+            $rilUkesC = 0;
+          }
+          else
+          {
+            $sumUkesC += $rilUkesC;
+            $rtUkesC = $sumUkesC / count($d); // Nilai rata rata ukes C
+          }
         }
           $nd=1;
         // echo "<tr><td colspan='5'> Ukes C ".round($rtUkesC,2)."</td></tr>";
@@ -64,8 +71,11 @@
         $d = $this->m_data_ukes->loadNilaiUkes($rowC->idukes_c, $pkms, $bln, $thn)->result();
         foreach($d as $rowD)
         {
-          $rilUkesC = $rowD->pencapaian / $rowD->total * 100;
+          $rilUkesC = @($rowD->pencapaian / $rowD->total) * 100;
           //echo "<tr class='bg-warning'><td>".round($rilUkesC,2)."</td></tr>";
+          if (is_nan($rilUkesC)) {
+            $rilUkesC = 0;
+          }
           $sumUkesC += $rilUkesC;
           $rtUkesC = $sumUkesC / count($d); // Nilai rata rata ukes C
         }
@@ -83,7 +93,7 @@
       <td class="text-center"><strong><?= round($rtUkesB,2) ?></strong></td>
       <td colspan="4"></td>
     </tr>
-
+    <<?php $sumUkesB = 0; $rtUkesB = 0; ?>
     <!-- ==================================================== -->
 
     <?php $c=0; $ukkc = $this->m_data_ukes->loadUkesC($rowB->idukes_b); $noc=1?>
@@ -92,8 +102,11 @@
         $d = $this->m_data_ukes->loadNilaiUkes($rowC->idukes_c, $pkms, $bln, $thn)->result();
         foreach($d as $rowD)
         {
-          $rilUkesC = $rowD->pencapaian / $rowD->total * 100;
+          $rilUkesC = @($rowD->pencapaian / $rowD->total) * 100;
           // echo "<tr class='bg-warning'><td>".round($rilUkesC,2)."</td></tr>";
+          if (is_nan($rilUkesC)) {
+            $rilUkesC = 0;
+          }
           $sumUkesC += $rilUkesC;
           $rtUkesC = $sumUkesC / count($d);
         }
@@ -107,7 +120,7 @@
         <td class="text-center"><strong><?= round($rtUkesC,2) ?></strong></td>
         <td colspan="6"></td>
       </tr>
-      <?php $sumUkesC=0 ?>
+      <?php $sumUkesC=0; $rtUkesC = 0 ; ?>
 
       <!-- ========================================================== -->
 
@@ -122,7 +135,13 @@
           <td class="text-center"><?= $rowD->total ?></td>
           <td class="text-center"><?= $rowD->target ?></td>
           <td class="text-center"><?= $rowD->pencapaian ?></td>
-          <?php $arilUkesC = $rowD->pencapaian/$rowD->total*100 ?>
+          <?php
+            $arilUkesC = @($rowD->pencapaian / $rowD->total) * 100;
+            if (is_nan($arilUkesC)) {
+              $arilUkesC = 0;
+            }
+          ?>
+
           <td><?= round($arilUkesC,2) ?></td>
           <td colspan="2"></td>
           <td><?= $rowD->analisa ?></td>

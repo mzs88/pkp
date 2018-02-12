@@ -60,7 +60,7 @@
             <form action="<?= base_url() ?>c_login/verifikasi" method="POST" onsubmit="return chekForm()">
               <fieldset>
                 <div class="form-group">
-                  <input class="form-control" id="userName" placeholder="Kode Puskesmas" name="UserName" type="text" autofocus>
+                  <input class="form-control" id="userName" placeholder="Username" name="UserName" type="text" autofocus>
                 </div>
                 <div class="form-group">
                   <input class="form-control" id="passWord" placeholder="Password" name="PassWord" type="password" value="">

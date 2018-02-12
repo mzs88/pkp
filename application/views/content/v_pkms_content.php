@@ -15,13 +15,15 @@
       {
         console.log(result);
         console.log(JSON.parse(result));
-        Morris.Bar(
+        Morris.Line(
         {
           element:'chart',
           data:JSON.parse(result),
           xkey:'x',
           ykeys:['y'],
           labels:['Nilai'],
+          xLabels:['month'],
+          parseTime:false,
           hidehover:'auto',
           resize:true
         });
